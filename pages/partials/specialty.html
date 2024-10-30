@@ -1,0 +1,72 @@
+<body ng-controller="EspecialidadController as especialidadCtrl">
+  <ng-include src="'../pages/partials/navbar.html'"></ng-include>
+
+  <!-- Conteneder de los select -->
+  <div class="container inicio flex-grow-1">
+      <h2 class="text-center">Selecciona Especialidad y Profesional</h2>
+
+      <div ng-if="!especialidadCtrl.formSubmitted">
+          <div class="form-group">
+              <label for="especialidadSelect">Especialidad:</label>
+              <select
+                  id="especialidadSelect"
+                  class="form-control"
+                  ng-model="especialidadCtrl.especialidadSeleccionada"
+                  ng-options="especialidad.nombre for especialidad in especialidadCtrl.especialidades"
+                  ng-change="especialidadCtrl.seleccionarEspecialidad()"
+                  required
+              >
+                  <option value="">Selecciona una especialidad</option>
+              </select>
+          </div>
+
+          <div class="form-group" ng-if="especialidadCtrl.profesionales.length > 0">
+              <label for="profesionalSelect">Profesional:</label>
+              <select
+                  id="profesionalSelect"
+                  class="form-control"
+                  ng-model="especialidadCtrl.professionalSeleccionado"
+                  ng-options="profesional.id as profesional.nombre for profesional in especialidadCtrl.profesionales"
+                  ng-change="especialidadCtrl.seleccionarProfesional(especialidadCtrl.professionalSeleccionado)"
+                  required
+              >
+                  <option value="">Selecciona un profesional</option>
+              </select>
+          </div>
+
+          <div ng-if="especialidadCtrl.loadingProfesionales">
+              Cargando profesionales...
+          </div>
+
+          <div ng-if="especialidadCtrl.errorMessage" class="alert alert-danger">
+              {{ especialidadCtrl.errorMessage }}
+          </div>
+
+          <div class="form-group" ng-if="especialidadCtrl.horarios.length > 0">
+              <label for="horarioSelect">Horario:</label>
+              <select
+                  id="horarioSelect"
+                  class="form-control"
+                  ng-model="especialidadCtrl.horarioSeleccionado"
+                  ng-options="horario for horario in especialidadCtrl.horarios"
+                  required
+              >
+                  <option value="">Selecciona un horario</option>
+              </select>
+          </div>
+      </div>
+
+      <!-- El form aparece condicionalmente -->
+      <ng-include
+          ng-if="especialidadCtrl.especialidadSeleccionada && especialidadCtrl.professionalSeleccionado && especialidadCtrl.horarioSeleccionado && !especialidadCtrl.formSubmitted"
+          src="'../pages/partials/form.html'"
+      ></ng-include>
+
+      <!-- Mensaje de exito -->
+      <div ng-if="especialidadCtrl.formSubmitted" class="alert alert-success">
+          {{ especialidadCtrl.successMessage }}
+      </div>
+  </div>
+
+  <ng-include src="'../pages/partials/footer.html'"></ng-include>
+</body>

@@ -1,0 +1,18 @@
+{
+  "1": [
+    {
+      "id": 101,
+      "nombre": "Dr. Juan Pérez"
+    },
+    {
+      "id": 102,
+      "nombre": "Dra. Ana Gómez"
+    }
+  ],
+  "2": [
+    {
+      "id": 201,
+      "nombre": "Dr. Luis Sánchez"
+    }
+  ]
+}

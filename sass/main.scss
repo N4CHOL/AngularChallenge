@@ -1,0 +1,21 @@
+@import '../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
+@import './components/header';
+@import './components/footer';
+
+html, body {
+  height: 100%; 
+  margin: 0; 
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-height: 100vh; 
+}
+
+.inicio{
+    margin-top:80px;
+    height: calc(100vh -  140px);
+}
+
